@@ -21,8 +21,9 @@ from sklearn.utils import resample, class_weight
 from tensorflow.python.keras.models import load_model
 from typing import List, Optional, Dict
 
-from environment import GROUP_IDENTITY_CLASS
-from gamemodel import SHARED_IDENTITY_TYPE, PERSONAL_IDENTITY_TYPE
+GROUP_IDENTITY_CLASS = 1
+SHARED_IDENTITY_TYPE = "GROUP_IDENTITY"  # type:str
+PERSONAL_IDENTITY_TYPE = "PERSONAL_IDENTITY"  # type:str
 
 TYPE_TO_CLASS = {
     PERSONAL_IDENTITY_TYPE: 0,
