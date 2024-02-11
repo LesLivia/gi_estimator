@@ -1,12 +1,22 @@
+import os
+
 import numpy as np
 
 import analyser
 
+MODEL_PATH = 'submodules/gi_estimator/model/trained_model.h5'
+PROJECT_PATH = 'stratego_generator/' + MODEL_PATH
 
-class AutonomicManagerController():
 
-    def __init__(self, type_analyser):
-        self.type_analyser = type_analyser  # type: analyser.SyntheticTypeAnalyser
+class AutonomicManagerController:
+    def __init__(self):
+        curr_path = os.getcwd()
+        if 'impact' in curr_path:
+            model_path = os.getcwd().replace('impact2.10.7', PROJECT_PATH)
+        else:
+            model_path = os.getcwd().replace('resources/robot_controllers', MODEL_PATH)
+
+        self.type_analyser: analyser.SyntheticTypeAnalyser = analyser.SyntheticTypeAnalyser(model_file=model_path)
 
     def get_shared_identity_probability(self, sensor_data):
         # type: (np.ndarray) -> float
@@ -15,10 +25,3 @@ class AutonomicManagerController():
         shared_identity_prob = type_probabilities.item()  # type: float
 
         return shared_identity_prob
-
-
-def main():
-    manager = AutonomicManagerController(analyser.SyntheticTypeAnalyser(model_file="trained_model.h5"))
-    sample_sensor_reading = np.zeros(shape=(1, 31))  # type: np.ndarray
-    robot_action = manager.get_shared_identity_probability(sample_sensor_reading)
-    print(robot_action)
