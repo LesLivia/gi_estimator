@@ -5,20 +5,20 @@ from sklearn.preprocessing import OneHotEncoder
 
 import analyser
 
-MODEL_PATH = 'submodules/gi_estimator/model/trained_model.h5'
-ENCODER_PATH = 'submodules/gi_estimator/model/encoder.pickle'
-PROJECT_PATH = 'stratego_generator/'
+MODEL_PATH = '/submodules/gi_estimator/model/trained_model.h5'
+ENCODER_PATH = '/submodules/gi_estimator/model/encoder.pickle'
+PROJECT_PATH = 'stratego_generator'
 
 
-class AutonomicManagerController:
+class GI_Estimator:
     def __init__(self):
         curr_path = os.getcwd()
         if 'impact' in curr_path:
             model_path = os.getcwd().replace('impact2.10.7', PROJECT_PATH + MODEL_PATH)
             encoder_path = os.getcwd().replace('impact2.10.7', PROJECT_PATH + ENCODER_PATH)
         else:
-            model_path = os.getcwd().replace('resources/robot_controllers', MODEL_PATH)
-            encoder_path = os.getcwd().replace('resources/robot_controllers', ENCODER_PATH)
+            model_path = os.getcwd() + MODEL_PATH
+            encoder_path = os.getcwd() + ENCODER_PATH
 
         self.type_analyser: analyser.SyntheticTypeAnalyser = analyser.SyntheticTypeAnalyser(model_file=model_path)
 
