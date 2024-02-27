@@ -22,8 +22,8 @@ class GI_Estimator:
 
         self.type_analyser: analyser.SyntheticTypeAnalyser = analyser.SyntheticTypeAnalyser(model_file=model_path)
 
-        # with open(encoder_path, "rb") as encoder_file:
-        #    self.encoder: OneHotEncoder = pickle.load(encoder_file, encoding='latin1')
+        with open(encoder_path, "rb") as encoder_file:
+            self.encoder: OneHotEncoder = pickle.load(encoder_file)
 
     def get_shared_identity_probability(self, sensor_data):
 
