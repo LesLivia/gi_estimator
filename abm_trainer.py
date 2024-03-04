@@ -28,7 +28,7 @@ def get_netlogo_dataset():
     dataframes = [pd.read_csv("{}/{}_{}.csv".format(TRAINING_DATA_DIRECTORY,
                                                     dataframe_index,
                                                     NETLOGO_DATA_FILE_PREFIX))
-                  for dataframe_index in range(0, 12)]  # type: List[pd.DataFrame]
+                  for dataframe_index in range(0, 97)]  # type: List[pd.DataFrame]
 
     netlogo_dataframe = pd.concat(dataframes, axis=0)  # type: pd.DataFrame
 
